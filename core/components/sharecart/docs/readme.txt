@@ -1,10 +1,7 @@
 --------------------
 shareCart
 --------------------
-Author: John Doe <john@doe.com>
+Author: Electrica <info@modx.kz>
 --------------------
 
-A basic Extra for MODx Revolution.
-
-Feel free to suggest ideas/improvements/bugs on GitHub:
-http://github.com/username/shareCart/issues
+Слепки заказов
