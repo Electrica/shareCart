@@ -16,7 +16,8 @@ $tmp = array(
             'msOnBeforeChangeInCart' => array(),
             'msOnChangeInCart' => array(),
             'msOnBeforeEmptyCart' => array(),
-            'msOnEmptyCart' => array()
+            'msOnEmptyCart' => array(),
+            'OnLoadWebDocument' => array()
         )
     )
 );

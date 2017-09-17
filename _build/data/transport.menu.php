@@ -5,11 +5,11 @@
 $menus = array();
 
 $tmp = array(
-    'sharecart' => array(
-        'description' => 'sharecart_menu_desc',
-        'action' => 'home',
-        //'icon' => '<i class="icon icon-large icon-modx"></i>', TODO добавить иконку корзины
-    ),
+//    'sharecart' => array(
+//        'description' => 'sharecart_menu_desc',
+//        'action' => 'home',
+//        //'icon' => '<i class="icon icon-large icon-modx"></i>', TODO добавить иконку корзины
+//    ),
 );
 
 foreach ($tmp as $k => $v) {

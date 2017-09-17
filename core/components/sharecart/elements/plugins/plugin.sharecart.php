@@ -20,20 +20,34 @@ switch ($modx->event->name) {
         break;
 
     case 'msOnChangeInCart':
-
-        $addProduct = array();
-        $addProduct['cart'] = $cart->get();
-        $shareCart->updateProduct($addProduct);
-
-        break;
-
     case 'msOnRemoveFromCart':
-
-        print_r($key);
+        $updateProduct = array();
+        $updateProduct['cart'] = $cart->get();
+        $shareCart->updateProduct($updateProduct);
 
         break;
 
-    case 'msOnEmptyCart':
+
+    case 'OnLoadWebDocument':
+
+        $modx->regClientScript($shareCart->config['jsUrl'] . 'web/custom.sharecart.js');
+
+        //Проверить наличие GET корзины
+
+        if(isset($_GET['cart'])){
+            $cart = $_GET['cart'];
+            if($cart != $_SESSION['keyUser']){
+                if ($miniShop2 = $modx->getService('miniShop2')) {
+                    // Инициализируем класс в текущий контекст
+                    $miniShop2->initialize($modx->context->key);
+
+                    $output = $shareCart->getCart($cart);
+                    foreach ($output as $id){
+                        $miniShop2->cart->add($id);
+                    }
+                }
+            }
+        }
 
         break;
 

@@ -5,11 +5,11 @@
 $settings = array();
 
 $tmp = array(
-    'enable_share_cart' => array(
-        'xtype' => 'combo-boolean',
-        'value' => false,
-        'area' => 'sharecart_main',
-    ),
+//    'enable_share_cart' => array(
+//        'xtype' => 'combo-boolean',
+//        'value' => false,
+//        'area' => 'sharecart_main',
+//    ),
 );
 
 foreach ($tmp as $k => $v) {

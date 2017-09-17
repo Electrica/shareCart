@@ -7,7 +7,7 @@ $snippets = array();
 $tmp = array(
     'shareCart' => array(
         'file' => 'sharecart',
-        'description' => '',
+        'description' => 'Сниппет для вывода ссылки на корзину',
     ),
 );
 

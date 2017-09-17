@@ -7,7 +7,7 @@ $chunks = array();
 $tmp = array(
     'tpl.shareCart.item' => array(
         'file' => 'item',
-        'description' => '',
+        'description' => 'Чанк для вывода ссылки',
     )
 );
 
