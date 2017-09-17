@@ -1,8 +1,2 @@
 <?php
-
-/**
- * @package sharecart
- */
-class shareCartItem extends xPDOSimpleObject
-{
-}
+class shareCartItem extends xPDOSimpleObject {}

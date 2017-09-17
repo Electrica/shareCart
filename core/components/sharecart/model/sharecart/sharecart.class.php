@@ -42,4 +42,30 @@ class shareCart
         $this->modx->lexicon->load('sharecart:default');
     }
 
+
+
+    public function addProduct($addProduct = array()){
+
+        $key_user = $this->_checkIsUser();
+
+        foreach ($addProduct['cart'] as $cart){
+            $addCart[] = $cart;
+        }
+
+        $this->modx->newObject('shareCartItem', array(
+            'cart' => array('name' => 1),
+            'session_key' => 123
+        ));
+    }
+
+    public function _checkIsUser(){
+
+        if(!$_SESSION['key_user']){
+            return $_SESSION['key_user'] = md5(time());
+        }else{
+            return $_SESSION['key_user'];
+        }
+
+    }
+
 }
