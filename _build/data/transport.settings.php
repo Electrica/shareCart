@@ -6,7 +6,7 @@ $settings = array();
 
 $tmp = array(
     'pagecart_id' => array(
-        'xtype' => 'textarea',
+        'xtype' => 'textfield',
         'value' => '',
         'area' => 'sharecart_main',
     ),
