@@ -11,23 +11,6 @@ if (!$shareCart = $modx->getService('sharecart', 'shareCart', $modx->getOption('
 
 switch ($modx->event->name) {
 
-    case 'msOnAddToCart':
-
-        $addProduct = array();
-        $addProduct['cart'] = $cart->get();
-        $shareCart->addProduct($addProduct);
-
-        break;
-
-    case 'msOnChangeInCart':
-    case 'msOnRemoveFromCart':
-        $updateProduct = array();
-        $updateProduct['cart'] = $cart->get();
-        $shareCart->updateProduct($updateProduct);
-
-        break;
-
-
     case 'OnLoadWebDocument':
 
         $modx->regClientScript($shareCart->config['jsUrl'] . 'web/custom.sharecart.js');
@@ -38,13 +21,19 @@ switch ($modx->event->name) {
             $cart = $_GET['cart'];
             if($cart != $_SESSION['keyUser']){
                 if ($miniShop2 = $modx->getService('miniShop2')) {
-                    // Инициализируем класс в текущий контекст
                     $miniShop2->initialize($modx->context->key);
 
-                    $output = $shareCart->getCart($cart);
-                    foreach ($output as $id){
-                        $miniShop2->cart->add($id);
+                    $output = $shareCart->getCartPlugin($cart);
+                    if($output){
+                        foreach ($output as $key){
+                            foreach ($key as $val){
+                                $miniShop2->cart->add($val['id'], $val['count'], $val['options']);
+                            }
+                        }
+                    }else{
+                        //TODO добавить 404
                     }
+
                 }
             }
         }

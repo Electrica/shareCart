@@ -7,9 +7,19 @@ if (!$shareCart = $modx->getService('sharecart', 'shareCart', $modx->getOption('
 ) {
     return 'Could not load shareCart class!';
 }
-
-// Do your snippet code here. This demo grabs 5 items from our custom table.
-$tpl = $modx->getOption('tpl', $scriptProperties, 'Item');
+/**
+ * @var pdoFetch $pdoFetch
+ */
+$pdoFetch = $modx->getService('pdoFetch');
+$tpl = $modx->getOption('tpl', $scriptProperties, 'getShareCart');
 $output = '';
-$output = $modx->getChunk($tpl);
+
+$carts = $shareCart->getCart();
+$outCarts = array();
+
+foreach ($carts as $cart){
+    $outCarts[] = $cart;
+}
+
+$output = $pdoFetch->getChunk($tpl, array('carts' => $outCarts));
 return $output;

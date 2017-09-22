@@ -9,14 +9,14 @@ $tmp = array(
         'file' => 'sharecart',
         'description' => '',
         'events' => array(
-            'msOnBeforeAddToCart' => array(),
-            'msOnAddToCart' => array(),
-            'msOnBeforeRemoveFromCart' => array(),
-            'msOnRemoveFromCart' => array(),
-            'msOnBeforeChangeInCart' => array(),
-            'msOnChangeInCart' => array(),
-            'msOnBeforeEmptyCart' => array(),
-            'msOnEmptyCart' => array(),
+//            'msOnBeforeAddToCart' => array(),
+//            'msOnAddToCart' => array(),
+//            'msOnBeforeRemoveFromCart' => array(),
+//            'msOnRemoveFromCart' => array(),
+//            'msOnBeforeChangeInCart' => array(),
+//            'msOnChangeInCart' => array(),
+//            'msOnBeforeEmptyCart' => array(),
+//            'msOnEmptyCart' => array(),
             'OnLoadWebDocument' => array()
         )
     )

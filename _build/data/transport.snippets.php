@@ -9,6 +9,10 @@ $tmp = array(
         'file' => 'sharecart',
         'description' => 'Сниппет для вывода ссылки на корзину',
     ),
+    'getShareCart' => array(
+        'file' => 'getsharecart',
+        'description' => 'Снипет для вывода сохраненных корзин'
+    )
 );
 
 foreach ($tmp as $k => $v) {

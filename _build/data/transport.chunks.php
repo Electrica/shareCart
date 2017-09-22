@@ -8,6 +8,10 @@ $tmp = array(
     'tpl.shareCart.item' => array(
         'file' => 'item',
         'description' => 'Чанк для вывода ссылки',
+    ),
+    'tpl.getShareCart' => array(
+        'file' => 'getsharecart',
+        'description' => 'Чанк для вывода всех сохраненных корзин'
     )
 );
 

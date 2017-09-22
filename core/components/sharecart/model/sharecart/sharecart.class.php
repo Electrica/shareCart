@@ -48,49 +48,87 @@ class shareCart
 
 
     public function addProduct($addProduct = array()){
-
         $saveItem = array();
-        $saveItem['session_key'] = $this->_checkIsUser();
 
-        foreach ($addProduct['cart'] as $cart){
-            $saveItem['cart'][] = $cart;
+        if($this->modx->user->id){
+            $saveItem['user_id'] = $this->modx->user->id;
+        }else{
+            if(!$_SESSION['userId']){
+                $saveItem['user_id'] = md5(time() . rand(0,1000));
+                $_SESSION['userId'] = $saveItem['user_id'];
+            }else{
+                $saveItem['user_id'] = $_SESSION['userId'];
+            }
+
         }
-        $this->_saveTable($saveItem);
+
+        $n = array();
+        $sessionKey = '';
+        foreach ($addProduct as $key => $val){
+            $sessionKey .= $key;
+            $n[] = $val;
+        }
+        $saveItem['session_key'] = md5($sessionKey);
+        $saveItem['cart'] = $n;
+        return $this->_saveTable($saveItem);
     }
 
-    public function updateProduct($updateProduct = array()){
+    public function deleteProduct($id = ''){
+        if($id){
+            /**
+             * @var xPDOObject $remove
+             */
+            $remove = $this->modx->getObject('shareCartItem', array('id' => $id));
+            if($remove->remove()){
+                return "Удалено успешно";
+            }else{
+                return "Произошла ошибка";
+            }
 
-        $saveItem = array();
-        $saveItem['session_key'] = $this->_checkIsUser();
-
-        foreach ($updateProduct['cart'] as $cart) {
-            $saveItem['cart'][] = $cart;
         }
-        $this->_saveTable($saveItem);
-
     }
 
     public function getCart($cart = ''){
         $output = array();
-        if($cart){
-            $getCart = $this->modx->getObject('shareCartItem', array('session_key' => $cart));
-            $cart = $getCart->get('cart');
-            foreach($cart as $c){
-                $output[] = $c['id'];
-            }
+        $userId = !empty($this->modx->user->id) ? $this->modx->user->id : $_SESSION['keyUser'];
+
+        $carts = $this->modx->getCollection($this->class_name, array('user_id' => $userId));
+
+        foreach ($carts as $key => $val){
+            $output[] = array(
+                'link' => $this->modx->makeUrl($this->modx->getOption('sharecart_pagecart_id'), $this->modx->context->key,'','full') . "&cart=" . $val->get('session_key'),
+                'carts' => $val->toArray()
+            );
         }
         return $output;
     }
 
+    public function getCartPlugin($cart = ''){
+        if($cart){
+            $response = $this->modx->getObject('shareCartItem', array('session_key' => $cart));
+            return $response->toArray();
+        }
+    }
+
     protected function _saveTable($saveItem = array()){
-        if(!$this->modx->getCount($this->class_name, array('session_key' => $saveItem['session_key']))){
+
+        if(!$this->modx->getCount($this->class_name, array('session_key' => $saveItem['session_key'], 'user_id' => $saveItem['user_id']))){
             $item = $this->modx->newObject($this->class_name, $saveItem);
             $item->save();
         }else{
-            $item = $this->modx->getObject($this->class_name, array('session_key' => $saveItem['session_key']));
+            $item = $this->modx->getObject($this->class_name, array('session_key' => $saveItem['session_key'], 'user_id' => $saveItem['user_id']));
             $item->set('cart', $saveItem['cart']);
             $item->save();
         }
+
+        //Возвращаем этот объект
+        $q = $this->modx->newQuery($this->class_name);
+        $q->where(array(
+            'session_key' => $saveItem['session_key'],
+            'user_id' => $saveItem['user_id']
+        ));
+        $output = $this->modx->getObject($this->class_name, $q);
+        return $output->get('session_key');
     }
 
      protected function _checkIsUser(){

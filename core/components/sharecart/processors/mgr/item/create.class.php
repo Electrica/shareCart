@@ -5,7 +5,7 @@ class shareCartItemCreateProcessor extends modObjectCreateProcessor
     public $objectType = 'shareCartItem';
     public $classKey = 'shareCartItem';
     public $languageTopics = array('sharecart');
-    //public $permission = 'create';
+    public $permission = 'create';
 
 
     /**
