@@ -4,7 +4,7 @@ $(document).ready(function () {
 
         $.ajax({
             method: 'POST',
-            url: 'shareCart/assets/components/sharecart/action.php',
+            url: 'assets/components/sharecart/action.php',
             data: {
                 action: 'createCart'
             },
@@ -25,7 +25,7 @@ $(document).ready(function () {
         var id = $(this).data('id-sharecart');
         $.ajax({
             method: 'POST',
-            url: 'shareCart/assets/components/sharecart/action.php',
+            url: 'assets/components/sharecart/action.php',
             data: {
                 id: id,
                 action: 'deleteCart'

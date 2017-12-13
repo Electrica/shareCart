@@ -7,14 +7,14 @@ if(empty($_REQUEST['action'])){
 }
 
 
-require_once dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/config.core.php';
+require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/config.core.php';
 require_once MODX_CORE_PATH.'model/modx/modx.class.php';
 $modx = new modX();
 $modx->initialize('web');
 $modx->getService('error','error.modError', '', '');
 
 
-$shareCart = $easyComm = $modx->getService('shareCart','shareCart',$modx->getOption('sharecart_core_path',null,$modx->getOption('core_path').'components/sharecart/').'model/sharecart/');
+$shareCart = $modx->getService('shareCart','shareCart',$modx->getOption('sharecart_core_path',null,$modx->getOption('core_path').'components/sharecart/').'model/sharecart/');
 $miniShop2 = $modx->getService('miniShop2');
 
 

@@ -20,6 +20,7 @@
         </td>
         <td>
             <a href="#" data-id-sharecart="{$cart.carts.id}" id="delete-sharecart">Удалить</a>
+            
         </td>
     </tr>
 
