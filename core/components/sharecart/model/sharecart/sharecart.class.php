@@ -59,7 +59,6 @@ class shareCart
             }else{
                 $saveItem['user_id'] = $_SESSION['userId'];
             }
-
         }
 
         $n = array();
@@ -68,7 +67,8 @@ class shareCart
             $sessionKey .= $key;
             $n[] = $val;
         }
-        $saveItem['session_key'] = md5($sessionKey);
+        $saveItem['session_key'] = md5($sessionKey.$saveItem['user_id']);
+        $_SESSION['session_key'] = $saveItem['session_key'];
         $saveItem['cart'] = $n;
         return $this->_saveTable($saveItem);
     }

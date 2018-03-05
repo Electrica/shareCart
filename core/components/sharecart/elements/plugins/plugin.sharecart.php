@@ -11,6 +11,10 @@ if (!$shareCart = $modx->getService('sharecart', 'shareCart', $modx->getOption('
 
 switch ($modx->event->name) {
 
+    /**
+     * Убирать ссылку на корзину, get параметр
+     */
+
     case 'OnLoadWebDocument':
 
         $modx->regClientScript($shareCart->config['jsUrl'] . 'web/custom.sharecart.js');
@@ -19,17 +23,26 @@ switch ($modx->event->name) {
 
         if(isset($_GET['cart'])){
             $cart = $_GET['cart'];
-            if($cart != $_SESSION['keyUser']){
+            if($cart != $_SESSION['session_key']){
                 if ($miniShop2 = $modx->getService('miniShop2')) {
                     $miniShop2->initialize($modx->context->key);
 
                     $output = $shareCart->getCartPlugin($cart);
                     if($output){
-                        foreach ($output as $key){
-                            foreach ($key as $val){
-                                $miniShop2->cart->add($val['id'], $val['count'], $val['options']);
-                            }
+                        foreach ($output['cart'] as $val){
+                            $miniShop2->cart->add($val['id'], $val['count'], $val['options']);
                         }
+                        //Получаем ссылку без GET параметра
+                        $url = str_replace('&cart='.$cart, '', $_SERVER['REQUEST_URI']);
+                        $siteUrl = $_SERVER['HTTP_HOST'];
+                        if(isset($_SERVER['HTTPS'])){
+                            $siteUrl = 'https://'.$siteUrl;
+                        }else{
+                            $siteUrl = 'http://'.$siteUrl;
+                        }
+                        //Редиректим
+                        $modx->sendRedirect($siteUrl.$url);
+
                     }else{
                         //TODO добавить 404
                     }

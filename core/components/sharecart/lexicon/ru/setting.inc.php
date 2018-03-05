@@ -2,5 +2,5 @@
 
 $_lang['area_sharecart_main'] = 'Основные';
 
-$_lang['setting_sharecart_some_setting'] = 'Какая-то настройка';
-$_lang['setting_sharecart_some_setting_desc'] = 'Это описание для какой-то настройки';
+$_lang['sharecart_pagecart_id'] = 'Id ресурса с корзиной';
+$_lang['sharecart_pagecart_id_desc'] = 'Для редиректа пользователя в корзину';

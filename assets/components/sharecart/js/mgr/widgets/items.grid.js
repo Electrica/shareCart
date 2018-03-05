@@ -182,7 +182,7 @@ Ext.extend(shareCart.grid.Items, MODx.grid.Grid, {
     },
 
     getFields: function () {
-        return ['id', 'name', 'description', 'active', 'actions'];
+        return ['id', 'session_key', 'cart', 'username', 'actions'];
     },
 
     getColumns: function () {
@@ -193,18 +193,18 @@ Ext.extend(shareCart.grid.Items, MODx.grid.Grid, {
             width: 70
         }, {
             header: _('sharecart_item_name'),
-            dataIndex: 'name',
+            dataIndex: 'session_key',
             sortable: true,
             width: 200,
         }, {
             header: _('sharecart_item_description'),
-            dataIndex: 'description',
+            dataIndex: 'cart',
             sortable: false,
             width: 250,
         }, {
-            header: _('sharecart_item_active'),
-            dataIndex: 'active',
-            renderer: shareCart.utils.renderBoolean,
+            header: _('sharecart_item_user'),
+            dataIndex: 'username',
+            //renderer: shareCart.utils.renderBoolean,
             sortable: true,
             width: 100,
         }, {

@@ -8,7 +8,7 @@ $xpdo_meta_map['shareCartItem']= array (
   array (
     'session_key' => '',
     'cart' => '{}',
-    'user_id' => 0,
+    'user_id' => '',
   ),
   'fieldMeta' => 
   array (
@@ -28,11 +28,11 @@ $xpdo_meta_map['shareCartItem']= array (
     ),
     'user_id' => 
     array (
-      'dbtype' => 'int',
-      'precision' => '12',
-      'phptype' => 'integer',
+      'dbtype' => 'varchar',
+      'precision' => '255',
+      'phptype' => 'string',
       'null' => false,
-      'default' => 0,
+      'default' => '',
     ),
   ),
 );

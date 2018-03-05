@@ -10,6 +10,11 @@ $tmp = array(
         'value' => '',
         'area' => 'sharecart_main',
     ),
+    'show_unpublished' => array(
+        'xtype' => 'combo-boolean',
+        'value' => 0,
+        'area' => 'sharecart_main'
+    )
 );
 
 foreach ($tmp as $k => $v) {

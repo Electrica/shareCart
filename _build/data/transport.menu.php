@@ -8,7 +8,7 @@ $tmp = array(
 //    'sharecart' => array(
 //        'description' => 'sharecart_menu_desc',
 //        'action' => 'home',
-//        //'icon' => '<i class="icon icon-large icon-modx"></i>', TODO добавить иконку корзины
+//        'icon' => '<i class="fa fa-shopping-basket"></i>', //TODO добавить иконку корзины
 //    ),
 );
 

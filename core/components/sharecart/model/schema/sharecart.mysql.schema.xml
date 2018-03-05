@@ -5,8 +5,7 @@
     <object class="shareCartItem" table="sharecart_items" extends="xPDOSimpleObject">
         <field key="session_key" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
         <field key="cart" dbtype="text" phptype="json" default="{}" />
-        <field key="user_id" dbtype="int" precision="12" phptype="integer" null="false" default=""/>
-
+        <field key="user_id" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
     </object>
 
 </model>

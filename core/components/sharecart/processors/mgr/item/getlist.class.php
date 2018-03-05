@@ -32,6 +32,7 @@ class shareCartItemGetListProcessor extends modObjectGetListProcessor
      */
     public function prepareQueryBeforeCount(xPDOQuery $c)
     {
+        print_r($this->getProperty('cart'));
         $query = trim($this->getProperty('query'));
         if ($query) {
             $c->where(array(
@@ -39,6 +40,11 @@ class shareCartItemGetListProcessor extends modObjectGetListProcessor
                 'OR:description:LIKE' => "%{$query}%",
             ));
         }
+        $c->leftJoin('modUser', 'modUser', 'shareCartItem.user_id = modUser.id');
+        // Выбираем поля подписчика
+        $c->select($this->modx->getSelectColumns($this->classKey, $this->classKey));
+        // И добавляем псевдоним и имя
+        $c->select('modUser.username');
 
         return $c;
     }
@@ -64,28 +70,6 @@ class shareCartItemGetListProcessor extends modObjectGetListProcessor
             'button' => true,
             'menu' => true,
         );
-
-        if (!$array['active']) {
-            $array['actions'][] = array(
-                'cls' => '',
-                'icon' => 'icon icon-power-off action-green',
-                'title' => $this->modx->lexicon('sharecart_item_enable'),
-                'multiple' => $this->modx->lexicon('sharecart_items_enable'),
-                'action' => 'enableItem',
-                'button' => true,
-                'menu' => true,
-            );
-        } else {
-            $array['actions'][] = array(
-                'cls' => '',
-                'icon' => 'icon icon-power-off action-gray',
-                'title' => $this->modx->lexicon('sharecart_item_disable'),
-                'multiple' => $this->modx->lexicon('sharecart_items_disable'),
-                'action' => 'disableItem',
-                'button' => true,
-                'menu' => true,
-            );
-        }
 
         // Remove
         $array['actions'][] = array(
